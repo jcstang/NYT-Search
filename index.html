@@ -1,53 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>NYT | Article search</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <!-- style.css -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <!-- font awesome -->
-  <script src="https://kit.fontawesome.com/d54a006847.js" crossorigin="anonymous"></script>
-</head>
-<body>
-  <div></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>NYT | Article search</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <!-- style.css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/d54a006847.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div></div>
 
-<div class="container top-bar">
-  <div class="top-title">
-    <h1 class="display-4">
-      <i class="far fa-newspaper"></i>
-      New York Times Search
-    </h1>
-  </div>
-</div>
-
-
-  <!-- MAIN form -->
-  <div class="container">
-
-    <form>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Search Terms</label>
-        <input type="text" class="form-control" id="myInput" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">The internet is not safe</small>
+    <div class="container top-bar">
+      <div class="top-title">
+        <h1 class="display-5">
+          <i class="far fa-newspaper"></i>
+          New York Times Search
+        </h1>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Number of Records to Retrieve</label>
-        <input type="number" class="form-control" id="exampleInputPassword1">
+    </div>
+
+    
+
+    <!-- MAIN form -->
+    <div class="container form-space">
+      
+      <!-- SEARCH PARAMS -->
+      <div class="container">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal"><i class="fas fa-dragon"></i> Search Parameters</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              $0 <small class="text-muted">/ mo</small>
+            </h1>
+
+            <!-- inside card body - FORM -->
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Search Terms</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="myInput"
+                  aria-describedby="emailHelp"
+                />
+                <small id="emailHelp" class="form-text text-muted"
+                  >The internet is not safe</small
+                >
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Number of Records to Retrieve</label>
+                <input type="number" class="form-control" id="exampleInputPassword1" />
+              </div>
+        
+              <button type="submit" id="primarybtn" class="btn btn-primary">
+                Submit
+              </button>
+            </form>
+            <!-- card body - FORM -->
+
+
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>10 users included</li>
+              <li>2 GB of storage</li>
+              <li>Email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button
+              type="button"
+              class="btn btn-lg btn-block btn-outline-primary"
+            >
+              Sign up for free
+            </button>
+          </div>
+        </div>
       </div>
+      <!-- END SEARCH PARAMS -->
 
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <!-- RESULTS -->
+        <div class="container">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal"><i class="fas fa-dragon"></i> Top Articles</h4>
+            </div>
+            <div class="card-body">
+              <h1 id="arcticle1" class="card-title pricing-card-title">
+                $0 <small class="text-muted">/ mo</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <!-- END RESULTS -->
 
-  </div>
-<script>
-  var searchTerms = $("#myInput").val();
-  $(".btn").on("click", function)
-  console.log(searchTerms);
-//https://api.nytimes.com/svc/search/v2/articlesearch.json?q= + searchterms + &api-key=yourkey
-</script>
+    </div>
 
-</body>
+    
+
+    <script>
+      $("#primarybtn").on("click", function(event) {
+        // prevents submit button from trying to send a form.
+        event.preventDefault();
+
+        var searchTerms = $("#myInput").val();
+        console.log(searchTerms);
+        console.log("something");
+        var searchUrl =
+          "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
+          searchTerms +
+          "&api-key=R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M";
+
+        $.ajax({
+          method: "GET",
+          url: searchUrl
+        }).then(function(response) {
+          // add code here
+          var artiticle = $("#arcticle1");
+          var articlediv = $("<div>");
+         articlediv.text(response.docs.abstract);
+         artiticle.append(articlediv);
+            
+        });
+      });
+    </script>
+  </body>
 </html>
