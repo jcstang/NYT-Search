@@ -20,8 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
-    <div></div>
-
+    <!-- TOP TITLE BAR -->
     <div class="container top-bar">
       <div class="top-title">
         <h1 class="display-5">
@@ -31,17 +30,21 @@
       </div>
     </div>
 
-    
-
     <!-- MAIN form -->
     <div class="container form-space">
-      
+
       <!-- SEARCH PARAMS -->
       <div class="container">
         <div class="card mb-4 shadow-sm">
           <div class="card-header">
-            <h4 class="my-0 font-weight-normal"><i class="fas fa-dragon"></i> Search Parameters</h4>
+            <h4 class="my-0 font-weight-normal">
+              <i class="fas fa-dragon"></i> Search Parameters
+            </h4>
           </div>
+
+          <!-- ********************************* -->
+          <!-- MAIN CARD BODY -->
+          <!-- ********************************* -->
           <div class="card-body">
             <h1 class="card-title pricing-card-title">
               <small class="text-muted"> Search Terms</small>
@@ -62,52 +65,56 @@
                 >
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Number of Records to Retrieve</label>
-                <input type="number" class="form-control" id="exampleInputPassword1" />
+                <label for="exampleInputPassword1"
+                  >Number of Records to Retrieve</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                />
               </div>
-        
+
               <button type="submit" id="primarybtn" class="btn btn-primary">
                 Submit
               </button>
             </form>
             <!-- card body - FORM -->
-
-
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>10 users included</li>
-              <li>2 GB of storage</li>
-              <li>Email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button
-              type="button"
-              class="btn btn-lg btn-block btn-outline-primary"
-            >
-              Sign up for free
-            </button>
           </div>
+          <!-- end of card body div -->
         </div>
       </div>
       <!-- END SEARCH PARAMS -->
 
-        <!-- RESULTS -->
-        <div class="container">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-header">
-              <h4 class="my-0 font-weight-normal"><i class="fas fa-dragon"></i> Top Articles</h4>
-            </div>
-            <div class="card-body">
-              <h1 id="arcticle1" class="card-title pricing-card-title">
-                $0 <small class="text-muted">/ mo</small>
-              </h1>
-            </div>
+      <!-- RESULTS -->
+      <div class="container">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">
+              <i class="fas fa-dragon"></i> Top Articles
+            </h4>
           </div>
+
+          <!-- ********************************* -->
+          <!-- CARD BODY - DIV -->
+          <!-- ********************************* -->
+          <div class="card-body">
+            <h1 id="arcticle1" class="card-title pricing-card-title">
+              $0 <small class="text-muted">/ mo</small>
+            </h1>
+
+
+            <!-- TODO: add the results here -->
+
+            
+          </div>
+          <!-- end of card body div -->
+
         </div>
-        <!-- END RESULTS -->
+      </div>
+      <!-- END RESULTS -->
 
     </div>
-
-    
 
     <script>
       $("#primarybtn").on("click", function(event) {
@@ -128,11 +135,8 @@
         }).then(function(response) {
           // add code here
           var articlediv = $("<div>");
-            articlediv.text(response.docs.abstract);
+          articlediv.text(response.docs.abstract);
           $("#arcticle1").append(articlediv);
-          
-       
-            
         });
       });
     </script>
