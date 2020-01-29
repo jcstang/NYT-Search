@@ -44,7 +44,7 @@
           </div>
           <div class="card-body">
             <h1 class="card-title pricing-card-title">
-              $0 <small class="text-muted">/ mo</small>
+              <small class="text-muted"> Search Terms</small>
             </h1>
 
             <!-- inside card body - FORM -->
@@ -127,10 +127,11 @@
           url: searchUrl
         }).then(function(response) {
           // add code here
-          var artiticle = $("#arcticle1");
           var articlediv = $("<div>");
-         articlediv.text(response.docs.abstract);
-         artiticle.append(articlediv);
+            articlediv.text(response.docs.abstract);
+          $("#arcticle1").append(articlediv);
+          
+       
             
         });
       });
